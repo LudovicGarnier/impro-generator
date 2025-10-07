@@ -1,15 +1,10 @@
 package com.improgenerator;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.improgenerator.R;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,9 +16,24 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvWord;
+    private TextView tvCategory;
     private Button btnGetWord;
-    private List<String> wordList;
+    private Button btnCaractere;
+    private Button btnLieu;
+    private Button btnPays;
+    private Button btnVilles;
+    private Button btnMetiers;
+    private Button btnEmotions;
+    private Button btnThemes;
+    private Button btnRelations;
+    private Button btnCelebrites;
+    private Button btnMots;
+
+
+    private List<String[]> dataList;  // Liste de tableaux pour chaque ligne
+    private String[] headers;  // En-têtes des colonnes
     private Random random;
+    private String currentFileName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +42,96 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialisation des vues
         tvWord = findViewById(R.id.tvWord);
+        tvCategory = findViewById(R.id.tvCategory);
         btnGetWord = findViewById(R.id.btnGetWord);
+        btnCaractere = findViewById(R.id.btnCaractere);
+        btnLieu = findViewById(R.id.btnLieux);
+        btnPays = findViewById(R.id.btnPays);
+        btnVilles = findViewById(R.id.btnVilles);
+        btnMetiers = findViewById(R.id.btnMetiers);
+        btnEmotions = findViewById(R.id.btnEmotions);
+        btnThemes = findViewById(R.id.btnThemes);
+        btnRelations = findViewById(R.id.btnRelations);
+        btnCelebrites = findViewById(R.id.btnCelebrites);
+        btnMots = findViewById(R.id.btnMots);
 
         // Initialisation
-        wordList = new ArrayList<>();
+        dataList = new ArrayList<>();
         random = new Random();
 
-        // Charger les mots depuis le fichier CSV
-        loadWordsFromCSV();
+        // Actions des boutons de catégorie
+        btnCaractere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("caractere.csv", "Caractère");
+            }
+        });
 
-        // Action du bouton
+        btnLieu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("lieu.csv", "Lieu");
+            }
+        });
+
+        btnPays.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("pays.csv", "Pays");
+            }
+        });
+
+        btnMetiers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("metiers.csv", "Métiers");
+            }
+        });
+
+        btnVilles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("villes.csv", "Villes");
+            }
+        });
+
+        btnEmotions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("emotions.csv", "Emotions");
+            }
+        });
+
+        btnThemes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("themes.csv", "Thèmes");
+            }
+        });
+
+        btnRelations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("relations.csv", "Relations");
+            }
+        });
+
+        btnCelebrites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("celebrites.csv", "Célébrités");
+            }
+        });
+
+        btnMots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFile("mots.csv", "Mots");
+            }
+        });
+
+
+        // Action du bouton pour obtenir un mot
         btnGetWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,49 +140,95 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadWordsFromCSV() {
-        System.out.println("pays.csv");
+    private void loadFile(String fileName, String themeName) {
+        // Vider complètement les données
+        dataList.clear();
+        headers = null;
+        currentFileName = themeName;
+        tvWord.setText("Appuyez sur le bouton");
+
+        android.util.Log.d("RandomWord", "=== Chargement de " + fileName + " ===");
+
         try {
-            // Lire le fichier CSV depuis assets
-            InputStream is = getAssets().open("pays.csv");
+            InputStream is = getAssets().open(fileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-            String line;
-            // Ignorer la première ligne si c'est un en-tête
-            reader.readLine();
+            // Lire les en-têtes (première ligne)
+            String headerLine = reader.readLine();
+            android.util.Log.d("RandomWord", "En-têtes: " + headerLine);
 
+            if (headerLine != null) {
+                headers = headerLine.split(",");
+                // Nettoyer les en-têtes
+                for (int i = 0; i < headers.length; i++) {
+                    headers[i] = headers[i].trim();
+                    android.util.Log.d("RandomWord", "Colonne " + i + ": " + headers[i]);
+                }
+            }
+
+            // Lire toutes les lignes de données
+            String line;
+            int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
-                // Séparer par virgule et prendre le premier élément
+                android.util.Log.d("RandomWord", "Ligne " + lineNumber + ": " + line);
                 String[] parts = line.split(",");
-                if (parts.length > 0 && !parts[0].trim().isEmpty()) {
-                    wordList.add(parts[0].trim());
+                if (parts.length > 0) {
+                    // Nettoyer chaque élément
+                    for (int i = 0; i < parts.length; i++) {
+                        parts[i] = parts[i].trim();
+                    }
+                    dataList.add(parts);
+                    lineNumber++;
                 }
             }
 
             reader.close();
             is.close();
 
-            Toast.makeText(this, wordList.size() + " mots chargés",
-                    Toast.LENGTH_SHORT).show();
+            android.util.Log.d("RandomWord", "Total chargé: " + dataList.size() + " lignes");
+
+            tvCategory.setText("Thème : " + themeName + " - " + dataList.size() + " mots chargés");
+//            Toast.makeText(this, dataList.size() + " mots avec " +
+//                    headers.length + " catégories chargées !", Toast.LENGTH_SHORT).show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Erreur de chargement du fichier",
+            android.util.Log.e("RandomWord", "ERREUR: " + e.getMessage());
+            Toast.makeText(this, "Erreur : fichier " + fileName + " introuvable",
                     Toast.LENGTH_LONG).show();
         }
     }
 
     private void displayRandomWord() {
-        if (wordList.isEmpty()) {
-            tvWord.setText("Aucun mot disponible");
+        if (dataList.isEmpty() || headers == null) {
+            Toast.makeText(this, "Veuillez d'abord choisir un thème",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Sélectionner un mot aléatoire
-        int randomIndex = random.nextInt(wordList.size());
-        String randomWord = wordList.get(randomIndex);
+        android.util.Log.d("RandomWord", "=== Affichage mot aléatoire ===");
+        android.util.Log.d("RandomWord", "Nombre de lignes disponibles: " + dataList.size());
+        android.util.Log.d("RandomWord", "Nombre de colonnes: " + headers.length);
 
-        // Afficher le mot
-        tvWord.setText(randomWord);
+        // Sélectionner une ligne aléatoire
+        int randomRow = random.nextInt(dataList.size());
+        String[] selectedRow = dataList.get(randomRow);
+
+        android.util.Log.d("RandomWord", "Ligne sélectionnée: " + randomRow);
+
+        // Sélectionner une colonne aléatoire
+        int randomColumn = random.nextInt(Math.min(headers.length, selectedRow.length));
+
+        android.util.Log.d("RandomWord", "Colonne sélectionnée: " + randomColumn);
+
+        // Obtenir le mot et la catégorie
+        String word = selectedRow[randomColumn];
+        String category = headers[randomColumn];
+
+        android.util.Log.d("RandomWord", "Mot: " + word + " | Catégorie: " + category);
+
+        // Afficher le résultat
+        tvWord.setText(word);
+        tvCategory.setText("Thème : " + currentFileName + " | Catégorie : " + category);
     }
 }

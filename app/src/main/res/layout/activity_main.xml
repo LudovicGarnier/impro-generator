@@ -18,38 +18,60 @@
         android:textColor="#333333" />
 
     <TextView
-        android:id="@+id/tvSubtitle"
+        android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="Choisissez une catégorie"
-        android:textSize="16sp"
-        android:textColor="#666666" />
+        android:layout_marginTop="40dp"
+        android:text="Aucune catégorie sélectionnée"
+        android:textColor="#ebb134"
+        android:textSize="18sp"
+        android:textStyle="italic" />
 
+    <TextView
+        android:id="@+id/tvWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="Choisissez une catégorie"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="#e6e0d3"
+        android:padding="20dp"
+        android:gravity="center" />
+
+    <!-- Cet espace prend toute la place disponible -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Les boutons seront maintenant collés en bas -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnAnimaux"
+            android:id="@+id/btnCaractere"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="Animaux"
+            android:layout_weight="1"
+            android:text="Caractère"
+            android:background="@drawable/button_rounded"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btnCouleurs"
+            android:id="@+id/btnLieux"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="Couleurs"
+            android:layout_weight="1"
+            android:text="Lieu"
+            android:background="@drawable/button_rounded"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -66,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
             android:text="Pays"
             android:textSize="14sp" />
 
@@ -75,42 +98,105 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
             android:text="Métiers"
             android:textSize="14sp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="Aucune catégorie sélectionnée"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        android:textColor="#888888" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/tvWord"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnVilles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Villes"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnEmotions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Emotions"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:text="Choisissez une catégorie"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:textColor="#2196F3"
-        android:padding="20dp"
-        android:gravity="center" />
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnThemes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Thèmes"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnMots"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Mots"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCelebrites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Célébrités"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnRelations"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_rounded"
+            android:text="Relations"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnGetWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Obtenir un nouveau mot"
+        android:background="@drawable/button_rounded"
         android:textSize="18sp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
