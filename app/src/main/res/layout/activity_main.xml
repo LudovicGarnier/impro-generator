@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:text="Générateur de Mots"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#333333" />
@@ -23,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="Aucune catégorie sélectionnée"
         android:textColor="#ebb134"
         android:textSize="18sp"
         android:textStyle="italic" />
@@ -76,21 +74,12 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
-
-        <Button
-            android:id="@+id/btnPays"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/button_rounded"
-            android:text="Pays"
-            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnMetiers"
@@ -100,24 +89,6 @@
             android:layout_margin="5dp"
             android:background="@drawable/button_rounded"
             android:text="Métiers"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnVilles"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/button_rounded"
-            android:text="Villes"
             android:textSize="14sp" />
 
         <Button

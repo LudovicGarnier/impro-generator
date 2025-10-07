@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnGetWord;
     private Button btnCaractere;
     private Button btnLieu;
-    private Button btnPays;
-    private Button btnVilles;
     private Button btnMetiers;
     private Button btnEmotions;
     private Button btnThemes;
@@ -46,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         btnGetWord = findViewById(R.id.btnGetWord);
         btnCaractere = findViewById(R.id.btnCaractere);
         btnLieu = findViewById(R.id.btnLieux);
-        btnPays = findViewById(R.id.btnPays);
-        btnVilles = findViewById(R.id.btnVilles);
         btnMetiers = findViewById(R.id.btnMetiers);
         btnEmotions = findViewById(R.id.btnEmotions);
         btnThemes = findViewById(R.id.btnThemes);
@@ -74,24 +70,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnPays.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFile("pays.csv", "Pays");
-            }
-        });
-
         btnMetiers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadFile("metiers.csv", "Métiers");
-            }
-        });
-
-        btnVilles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFile("villes.csv", "Villes");
             }
         });
 
@@ -187,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
             android.util.Log.d("RandomWord", "Total chargé: " + dataList.size() + " lignes");
 
-            tvCategory.setText("Thème : " + themeName + " - " + dataList.size() + " mots chargés");
+//            tvCategory.setText("Thème : " + themeName + " - " + dataList.size() + " mots chargés");
 //            Toast.makeText(this, dataList.size() + " mots avec " +
 //                    headers.length + " catégories chargées !", Toast.LENGTH_SHORT).show();
 
@@ -229,6 +211,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Afficher le résultat
         tvWord.setText(word);
-        tvCategory.setText("Thème : " + currentFileName + " | Catégorie : " + category);
+//        tvCategory.setText("Thème : " + currentFileName + " | Catégorie : " + category);
     }
 }
