@@ -6,10 +6,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/improvise"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:layout_width="wrap_content"

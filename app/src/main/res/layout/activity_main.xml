@@ -6,32 +6,18 @@
     android:padding="16dp"
     android:background="@drawable/background_open">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#333333" />
+    <!-- Espace au-dessus du mot pour le centrer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:textColor="#ebb134"
-        android:textSize="18sp"
-        android:textStyle="italic" />
-
+    <!-- Le mot sera maintenant centré verticalement -->
     <TextView
         android:id="@+id/tvWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
         android:text="Choisissez une catégorie"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -39,13 +25,13 @@
         android:padding="20dp"
         android:gravity="center" />
 
-    <!-- Cet espace prend toute la place disponible -->
+    <!-- Espace en dessous du mot pour le centrer -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Les boutons seront maintenant collés en bas -->
+    <!-- Les boutons restent collés en bas -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +60,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,13 +77,13 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btnEmotions"
+            android:id="@+id/btnCategorie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:background="@drawable/button_rounded"
-            android:text="Emotions"
+            android:text="Catégorie"
             android:textSize="14sp" />
 
     </LinearLayout>

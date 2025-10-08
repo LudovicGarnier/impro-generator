@@ -16,12 +16,11 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvWord;
-    private TextView tvCategory;
     private Button btnGetWord;
     private Button btnCaractere;
     private Button btnLieu;
     private Button btnMetiers;
-    private Button btnEmotions;
+    private Button btnCategorie;
     private Button btnThemes;
     private Button btnRelations;
     private Button btnCelebrites;
@@ -40,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialisation des vues
         tvWord = findViewById(R.id.tvWord);
-        tvCategory = findViewById(R.id.tvCategory);
         btnGetWord = findViewById(R.id.btnGetWord);
         btnCaractere = findViewById(R.id.btnCaractere);
         btnLieu = findViewById(R.id.btnLieux);
         btnMetiers = findViewById(R.id.btnMetiers);
-        btnEmotions = findViewById(R.id.btnEmotions);
+        btnCategorie = findViewById(R.id.btnCategorie);
         btnThemes = findViewById(R.id.btnThemes);
         btnRelations = findViewById(R.id.btnRelations);
         btnCelebrites = findViewById(R.id.btnCelebrites);
@@ -77,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEmotions.setOnClickListener(new View.OnClickListener() {
+        btnCategorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFile("emotions.csv", "Emotions");
+                loadFile("categories.csv", "Catégorie");
             }
         });
 
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
                 android.util.Log.d("RandomWord", "Ligne " + lineNumber + ": " + line);
-                String[] parts = line.split(",");
+                String[] parts = line.split(";");
                 if (parts.length > 0) {
                     // Nettoyer chaque élément
                     for (int i = 0; i < parts.length; i++) {
@@ -168,10 +166,6 @@ public class MainActivity extends AppCompatActivity {
             is.close();
 
             android.util.Log.d("RandomWord", "Total chargé: " + dataList.size() + " lignes");
-
-//            tvCategory.setText("Thème : " + themeName + " - " + dataList.size() + " mots chargés");
-//            Toast.makeText(this, dataList.size() + " mots avec " +
-//                    headers.length + " catégories chargées !", Toast.LENGTH_SHORT).show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -211,6 +205,5 @@ public class MainActivity extends AppCompatActivity {
 
         // Afficher le résultat
         tvWord.setText(word);
-//        tvCategory.setText("Thème : " + currentFileName + " | Catégorie : " + category);
     }
 }
